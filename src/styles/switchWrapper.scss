@@ -3,11 +3,18 @@
 .switchWrapper {
   position: relative;
 
+  @keyframes changePosition {
+    from {
+      transform: translate(0, 200px)
+    }
+    to {transform: translate(0)}
+  }
+
   > :first-child ~ * {
     position: absolute;
-    top: 200px;
+    top: 0;
     left: 0;
     width: 100%;
-    transition: all 1s;
+    animation: changePosition 1s ease-out;
   }
 }
