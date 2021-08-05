@@ -44,7 +44,7 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         duration: {
           ...statePart.duration,
-          ...action.payload,
+          [action.payload.type]:action.payload.value,
         },
       };
     default:
