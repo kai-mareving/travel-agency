@@ -6,17 +6,17 @@ import {Row, Col} from 'react-flexbox-grid';
 class TripListOptions extends React.Component {
   handleTags(tag, checked){
     if(checked) {
-      console.log('Adding tag', tag);
+      //// console.log('Adding tag', tag);
       this.props.addTag(tag);
     } else {
-      console.log('Removing tag', tag);
+      //// console.log('Removing tag', tag);
       this.props.removeTag(tag);
     }
   }
 
   handleDuration(type, value){
     value = parseInt(value);
-    console.log('Changing duration', type, value);
+    //// console.log('Changing duration', type, value);
     this.props.changeDuration(type, value);
   }
 

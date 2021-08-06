@@ -39,7 +39,7 @@ export default function reducer(statePart = [], action = {}) {
         tags: statePart.tags.filter(tag => tag != action.payload),
       };
     case CHANGE_DURATION:
-      console.log('CHANGE_DURATION:', action.payload);
+      //// console.log('CHANGE_DURATION:', action.payload);
       return {
         ...statePart,
         duration: {
