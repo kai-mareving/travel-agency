@@ -8,7 +8,7 @@ import PageTitle from '../../common/PageTitle/PageTitle';
 import SideImage from '../../common/SideImage/SideImage';
 import DetailsBox from '../../common/DetailsBox/DetailsBox';
 import DetailsImage from '../../common/DetailsImage/DetailsImage';
-import OrderForm from '../../features/OrderForm/OrderForm';
+import OrderForm from '../../features/OrderForm/OrderFormContainer';
 import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 
