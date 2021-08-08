@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TripListOptions.scss';
-import {Row, Col} from 'react-flexbox-grid';
+import { Row, Col } from 'react-flexbox-grid';
+import Icon from '../../common/Icon/Icon';
 
 class TripListOptions extends React.Component {
   handleTags(tag, checked){
@@ -20,8 +21,18 @@ class TripListOptions extends React.Component {
     this.props.changeDuration(type, value);
   }
 
+  resetDuration() {
+    this.props.changeDuration('from', 1);
+    this.props.changeDuration('to', 14);
+  }
+
   handleSearch(phrase){
     this.props.changeSearchPhrase(phrase);
+  }
+
+  resetSearch() {
+    this.props.changeSearchPhrase('');
+    //todo how to reset search input field value
   }
 
   render(){
@@ -34,6 +45,7 @@ class TripListOptions extends React.Component {
               <label>
                 <input className={`${styles.input} ${styles.search}`} type='text' placeholder='Search...' value={filters.phrase} onChange={event => this.handleSearch(event.currentTarget.value)} />
               </label>
+              <button onClick={e => this.resetSearch(e)}><Icon name='redo-alt' /></button>
             </div>
           </Col>
           <Col lg={4}>
@@ -46,6 +58,7 @@ class TripListOptions extends React.Component {
                 to:
                 <input className={`${styles.input} ${styles.number}`} type='number' value={filters.duration.to} min='1' max='14' onChange={event => this.handleDuration('to', event.currentTarget.value)} />
               </label>
+              <button onClick={e => this.resetDuration(e)}><Icon name='redo-alt' /></button>
             </div>
           </Col>
           <Col lg={4}>
