@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import styles from './styles/switchWrapper.scss';
 import { AnimatedSwitch } from 'react-router-transition';
@@ -17,7 +17,7 @@ import Info from './components/views/Info/Info';
 import NotFound from './components/views/NotFound/NotFound';
 
 import parseTrips from './utils/parseTrips';
-import {setMultipleStates} from './redux/globalRedux';
+import { setMultipleStates } from './redux/globalRedux';
 
 class App extends React.Component {
   static propTypes = {
