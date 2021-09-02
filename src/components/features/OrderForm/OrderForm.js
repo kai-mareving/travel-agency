@@ -8,9 +8,9 @@ import { Row, Col } from 'react-flexbox-grid';
 
 const OrderForm = ({ tripCost, options }) => {
   //todo what is the difference in output?
-  //todo why {...option} in pricing.map instead of {...options} or {options}?
-  //// console.log('options:', { ...options });
-  //// console.log('options:', { options });
+  //todo why spread {...option} in pricing.map and just {options} when passing to OrderSummary?
+  // console.log('options:', { ...options });
+  // console.log('options:', { options });
 
   return (
     <Row>
