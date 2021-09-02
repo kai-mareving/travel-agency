@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const OrderOptionCheckboxes = () => (
+const OrderOptionCheckboxes = ({currentValue}) => (
   <div>
-    OrderOptionCheckboxes
+    OrderOptionCheckboxes: {currentValue}
   </div>
 );
+
+OrderOptionCheckboxes.propTypes = {
+  currentValue: PropTypes.node.isRequired,
+};
 
 export default OrderOptionCheckboxes;

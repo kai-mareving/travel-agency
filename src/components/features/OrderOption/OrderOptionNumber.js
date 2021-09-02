@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const OrderOptionNumber = () => (
+const OrderOptionNumber = ({currentValue}) => (
   <div>
-    OrderOptionNumber
+    OrderOptionNumber: {currentValue}
   </div>
 );
+
+OrderOptionNumber.propTypes = {
+  currentValue: PropTypes.node.isRequired,
+};
 
 export default OrderOptionNumber;

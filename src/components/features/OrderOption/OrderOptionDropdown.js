@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const OrderOptionDropdown = () => (
+const OrderOptionDropdown = ({currentValue}) => (
   <div>
-    OrderOptionDropdown
+    OrderOptionDropdown: {currentValue}
   </div>
 );
+
+OrderOptionDropdown.propTypes = {
+  currentValue: PropTypes.string,
+};
 
 export default OrderOptionDropdown;

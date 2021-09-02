@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const OrderOptionIcons = () => (
+const OrderOptionIcons = ({currentValue}) => (
   <div>
-    OrderOptionIcons
+    OrderOptionIcons: {currentValue}
   </div>
 );
+
+OrderOptionIcons.propTypes = {
+  currentValue: PropTypes.node.isRequired,
+};
 
 export default OrderOptionIcons;

@@ -6,9 +6,7 @@ import OrderOption from '../OrderOption/OrderOption';
 import OrderSummary from '../OrderSummary/OrderSummary';
 import { Row, Col } from 'react-flexbox-grid';
 
-const OrderForm = ({ tripCost, options }) => {
-  //todo what is the difference in output?
-  //todo why spread {...option} in pricing.map and just {options} when passing to OrderSummary?
+const OrderForm = ({ tripCost, options, setOrderOption }) => {
   // console.log('options:', { ...options });
   // console.log('options:', { options });
 
@@ -16,7 +14,7 @@ const OrderForm = ({ tripCost, options }) => {
     <Row>
       {pricing.map(({...option}) => (
         <Col md={4} key={option.id}>
-          <OrderOption {...option} />
+          <OrderOption setOrderOption={setOrderOption} currentValue={options[option.id]} {...option} />
         </Col>
       ))}
       <Col xs={12}>
@@ -29,6 +27,7 @@ const OrderForm = ({ tripCost, options }) => {
 OrderForm.propTypes = {
   tripCost: PropTypes.string,
   options: PropTypes.object,
+  setOrderOption: PropTypes.func,
 };
 
 export default OrderForm;
