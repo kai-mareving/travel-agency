@@ -7,7 +7,7 @@ import OrderOptionNumber from './OrderOptionNumber';
 import OrderOptionCheckboxes from './OrderOptionCheckboxes';
 
 const OrderOption = ({ name, type, id, setOrderOption, ...otherProps }) => {
-  // console.log('...options:', { ...options });
+  // console.log('...otherProps:', { ...otherProps });
   const OptionComponent = optionTypes[type];
   if (!OptionComponent) {
     return null;
