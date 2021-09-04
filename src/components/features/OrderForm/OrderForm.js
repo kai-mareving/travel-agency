@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styles from './OrderForm.scss';
+import { Row, Col } from 'react-flexbox-grid';
 import pricing from '../../../data/pricing.json';
 import OrderOption from '../OrderOption/OrderOption';
 import OrderSummary from '../OrderSummary/OrderSummary';
-import { Row, Col } from 'react-flexbox-grid';
 
 const OrderForm = ({ tripCost, options, setOrderOption }) => {
-  // console.log('options:', { ...options });
-  // console.log('options:', { options });
+  //// console.log('options:', { options });
 
   return (
     <Row>
