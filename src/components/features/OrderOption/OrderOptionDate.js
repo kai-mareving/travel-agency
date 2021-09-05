@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './OrderOption.scss';
-import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import '../../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
-const OrderOptionDate = ({ currentValue, setOptionValue }) => {
-
+const OrderOptionDate = ({ setOptionValue }) => {
+  let [startDate, setStartDate] = useState(new Date());
   return (
     <div className={styles.component}>
       <DatePicker
-        selected={currentValue}
-        dateFormat='dd/MM/yyyy'
-        onChange={date => setOptionValue(date)}
-      />
+        className={styles.input}
+        selected={startDate}
+        dateFormat='yyyy/MM/dd'
+        onChange={date => {
+          setStartDate(date);
+          setOptionValue(date.toISOString().slice(0, 10));
+        }}
+        isClearable={true} />
     </div>
   );
 };
 
 OrderOptionDate.propTypes = {
-  currentValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  date: PropTypes.number,
+  currentValue: PropTypes.any,
+  // currentValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
   setOptionValue: PropTypes.func,
 };
 
