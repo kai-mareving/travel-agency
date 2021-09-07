@@ -15,9 +15,12 @@ const OrderOptionDate = ({ setOptionValue }) => {
         selected={startDate}
         dateFormat='yyyy/MM/dd'
         onChange={date => {
-          console.log(typeof startDate);
           setStartDate(date);
           setOptionValue(date);
+          /* if(date){
+            console.log(date);
+            setOptionValue(date.toISOString().substring(0, 10));
+          } */
         }}
         isClearable={true} />
     </div>
