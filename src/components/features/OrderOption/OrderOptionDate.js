@@ -15,6 +15,7 @@ const OrderOptionDate = ({ setOptionValue }) => {
         selected={startDate}
         dateFormat='yyyy/MM/dd'
         onChange={date => {
+          console.log(typeof startDate);
           setStartDate(date);
           setOptionValue(date);
         }}
@@ -24,9 +25,11 @@ const OrderOptionDate = ({ setOptionValue }) => {
 };
 
 OrderOptionDate.propTypes = {
-  date: PropTypes.number,
-  currentValue: PropTypes.any,
+  setStartDate: PropTypes.func,
   setOptionValue: PropTypes.func,
+  currentValue: PropTypes.any,
+  date: PropTypes.object,
+  startDate: PropTypes.object,
 };
 
 export default OrderOptionDate;
