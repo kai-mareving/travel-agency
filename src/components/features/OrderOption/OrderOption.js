@@ -8,7 +8,7 @@ import OrderOptionCheckboxes from './OrderOptionCheckboxes';
 import OrderOptionText from './OrderOptionText';
 import OrderOptionDate from './OrderOptionDate';
 
-const OrderOption = ({ name, type, id, setOrderOption, ...otherProps }) => {
+const OrderOption = ({ id, type, name, setOrderOption, ...otherProps }) => {
   //> console.log('...otherProps:', { ...otherProps });
   const OptionComponent = optionTypes[type];
   if (!OptionComponent) {
@@ -24,9 +24,9 @@ const OrderOption = ({ name, type, id, setOrderOption, ...otherProps }) => {
 };
 
 OrderOption.propTypes = {
-  name: PropTypes.string.isRequired,
+  id: PropTypes.string,
   type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  name: PropTypes.string/* .isRequired */,
   setOrderOption: PropTypes.func,
 };
 
