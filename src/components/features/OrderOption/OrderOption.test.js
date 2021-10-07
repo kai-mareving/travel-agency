@@ -9,11 +9,7 @@ describe('Component OrderOption', () => {
     />);
 
     expect(component).toBeTruthy();
-    // console.log(component.debug());
-  });
-
-  it('should throw error without required props', () => {
-    expect(() => shallow(<OrderOption />)).toThrow();
+    //// console.log(component.debug());
   });
 
   it('should return empty object if called without required type prop', () => {
@@ -31,3 +27,41 @@ describe('Component OrderOption', () => {
     expect(title.text()).toEqual(expectedName);
   });
 });
+
+const optionTypes = {
+  dropdown: 'OrderOptionDropdown',
+  icons: 'OrderOptionIcons',
+  checkboxes: 'OrderOptionCheckboxes',
+  number: 'OrderOptionNumber',
+  text: 'OrderOptionText',
+  date: 'OrderOptionDate',
+};
+
+for (let type in optionTypes) {
+  describe(`Component OrderOption with type=${type}`, () => {
+    /* test setup */
+    let component;
+    //? create component here for every 'it' to use
+    beforeEach(() => {
+      component = shallow(
+        <OrderOption
+          type={type}
+        />
+      );
+    });
+
+    /* common tests */
+    it('passes dummy test', () => {
+      expect(1).toBe(1);
+      console.log(component.debug());
+    });
+
+    /* type-spec tests */
+    switch (type) {
+      case 'dropdown': {
+        /* tests for dropdown */
+        break;
+      }
+    }
+  });
+}

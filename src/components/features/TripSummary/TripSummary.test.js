@@ -11,7 +11,7 @@ describe('Component TripSummary', () => {
     />);
 
     expect(component).toBeTruthy();
-    // console.log(component.debug());
+    //// console.log(component.debug());
   });
 
   it('should throw error without required props', () => {
