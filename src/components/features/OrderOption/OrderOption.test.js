@@ -62,7 +62,7 @@ const mockPropsForType = {
   date: {},
 };
 
-// const testValue = mockProps.values[1].id;
+const testValue = mockProps.values[1].id;
 // const testValueNumber = 3;
 
 for (let type in optionTypes) {
@@ -71,12 +71,15 @@ for (let type in optionTypes) {
     let component;
     let subcomponent;
     let renderedSubcomponent;
+    let mockSetOrderOption; //! mock function
 
     //- create component here for every 'it' to use
     beforeEach(() => {
+      mockSetOrderOption = jest.fn(); //!
       component = shallow(
         <OrderOption
           type={type}
+          setOrderOption={mockSetOrderOption} //!
           {...mockProps}
           {...mockPropsForType[type]}
         />
@@ -89,12 +92,19 @@ for (let type in optionTypes) {
     it(`renders ${optionTypes[type]}`, () => {
       expect(subcomponent).toBeTruthy();
       expect(subcomponent.length).toBe(1);
-      //// console.log(component.debug());
       //// console.log(subcomponent.debug());
     });
 
     /* type-spec tests */
     switch (type) {
+      case 'checkboxes': {
+        /* tests for checkboxes */
+        break;
+      }
+      case 'date': {
+        /* tests for date */
+        break;
+      }
       case 'dropdown': {
         it('contains select and options', () => {
           const select = renderedSubcomponent.find('select');
@@ -108,6 +118,25 @@ for (let type in optionTypes) {
           expect(options.at(0).prop('value')).toBe(mockProps.values[0].id);
           expect(options.at(1).prop('value')).toBe(mockProps.values[1].id);
         });
+
+        it('should run setOrderOption fn on change', () => {
+          renderedSubcomponent.find('select').simulate('change', { currentTarget: { value: testValue } });
+
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
+        });
+        break;
+      }
+      case 'icons': {
+        /* tests for icons */
+        break;
+      }
+      case 'number': {
+        /* tests for number */
+        break;
+      }
+      case 'text': {
+        /* tests for text */
         break;
       }
     }
