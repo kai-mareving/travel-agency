@@ -63,7 +63,7 @@ const mockPropsForType = {
 };
 
 const testValue = mockProps.values[1].id;
-// const testValueNumber = 3;
+const testValueNumber = 3;
 
 for (let type in optionTypes) {
   describe(`Component OrderOption with type=${type}`, () => {
@@ -132,11 +132,35 @@ for (let type in optionTypes) {
         break;
       }
       case 'number': {
-        /* tests for number */
+        it('contains input with correct values', () => {
+          const input = renderedSubcomponent.find('input');
+          expect(input.prop('value')).toBe(mockPropsForType[type].currentValue);
+          //ASK MENTOR: which is correct?
+          //or expect(input.prop('value')).toBe(mockPropsForType.number.currentValue);
+          expect(input.prop('min')).toBe(mockProps.limits.min);
+          expect(input.prop('max')).toBe(mockProps.limits.max);
+        });
+
+        it('should run setOrderOption fn on change', () => {
+          renderedSubcomponent.find('input').simulate('change', { currentTarget: { value: testValueNumber } });
+
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValueNumber });
+        });
         break;
       }
       case 'text': {
-        /* tests for text */
+        it('contains input with correct value', () => {
+          const input = renderedSubcomponent.find('input');
+          expect(input.prop('value')).toBe(mockProps.currentValue);
+        });
+
+        it('should run setOrderOption fn on change', () => {
+          renderedSubcomponent.find('input').simulate('change', { currentTarget: { value: testValue } });
+
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
+        });
         break;
       }
     }
