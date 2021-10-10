@@ -56,13 +56,13 @@ const mockProps = {
 const mockPropsForType = {
   dropdown: {},
   icons: {},
-  checkboxes: { currentValue: [mockProps.currentValue] },
+  checkboxes: { currentValue: [mockProps.currentValue] }, //* hungarian
   number: { currentValue: 1 },
   text: {},
   date: {},
 };
 
-const testValue = mockProps.values[1].id;
+const testValue = mockProps.values[1].id; //> polish
 const testValueNumber = 3;
 
 for (let type in optionTypes) {
@@ -92,7 +92,7 @@ for (let type in optionTypes) {
     it(`renders ${optionTypes[type]}`, () => {
       expect(subcomponent).toBeTruthy();
       expect(subcomponent.length).toBe(1);
-      //// console.log(subcomponent.debug());
+      ////console.log(subcomponent.debug());
     });
 
     /* type-spec tests */
@@ -128,7 +128,27 @@ for (let type in optionTypes) {
         break;
       }
       case 'icons': {
-        /* tests for icons */
+        it('contains div and Icons', () => {
+          const iconDivs = renderedSubcomponent.find('div[className*="icon"]');
+          const blankIcon = renderedSubcomponent.find('Icon[name="times-circle"]');
+          const icons = iconDivs.find('Icon').not('[name="times-circle"]');
+
+          //! this should pass
+          expect(iconDivs.length).toBe(mockProps.values.length+1);
+          expect(blankIcon.length).toBe(1);
+          expect(icons.length).toBe(mockProps.values.length);
+          console.log(iconDivs.debug());
+          console.log(icons.debug());
+          expect(icons.at(0).prop('value')).toBe(mockProps.values[0].name); //! Received: undefined
+          expect(icons.at(1).prop('price')).toBe(mockProps.values[1].price); //! Received: undefined
+        });
+
+        /* it('should run setOrderOption fn on change', () => {
+          renderedSubcomponent.find('div[className*="icon"]').last().simulate('change', { currentTarget: { value: testValue } });
+
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
+        }); */
         break;
       }
       case 'number': {
