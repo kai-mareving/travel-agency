@@ -107,11 +107,18 @@ for (let type in optionTypes) {
           expect(inputs.at(1).prop('id')).toBe(mockProps.values[1].id);
         });
 
-        it('should run setOrderOption fn on change', () => {
+        it('should check element with setOrderOption fn on change', () => {
           renderedSubcomponent.find(`#${testValue}`).simulate('change', { currentTarget: { checked: true } });
 
           expect(mockSetOrderOption).toBeCalledTimes(1);
-          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue, testValue] }); //ASK MENTOR about this part
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue, testValue] });
+        });
+
+        it('should uncheck element with setOrderOption fn on change', () => {
+          renderedSubcomponent.find(`#${mockPropsForType.checkboxes.currentValue}`).simulate('change', { currentTarget: { checked: false } });
+
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [] });
         });
         break;
       }
@@ -158,14 +165,12 @@ for (let type in optionTypes) {
           const blankIcon = renderedSubcomponent.find('Icon[name="times-circle"]');
           const icons = iconDivs.find('Icon').not('[name="times-circle"]');
 
-          //! this passes but console logs show unexpected results
           expect(iconDivs.length).toBe(mockProps.values.length+1);
           expect(blankIcon.length).toBe(1);
           expect(icons.length).toBe(mockProps.values.length);
-          // console.log(iconDivs.debug());
-          // console.log(icons.debug());
-          // expect(icons.at(0).prop('value')).toBe(mockProps.values[0].name); //! Received: undefined
-          // expect(icons.at(1).prop('price')).toBe(mockProps.values[1].price); //! Received: undefined
+
+          expect(icons.at(0).prop('name')).toBe(mockProps.values[0].icon);
+          expect(icons.at(1).prop('name')).toBe(mockProps.values[1].icon);
         });
 
         it('should run setOrderOption fn on change', () => {
