@@ -93,13 +93,27 @@ for (let type in optionTypes) {
     it(`renders ${optionTypes[type]}`, () => {
       expect(subcomponent).toBeTruthy();
       expect(subcomponent.length).toBe(1);
-      ////console.log(subcomponent.debug());
+      //// console.log(subcomponent.debug());
     });
 
     /* type-spec tests */
     switch (type) {
       case 'checkboxes': {
-        /* tests for checkboxes */
+        it('contains inputs with correct values', () => {
+          const inputs = renderedSubcomponent.find('input');
+          console.log(inputs.debug());
+          expect(inputs.length).toEqual(mockProps.values.length);
+          expect(inputs.at(0).prop('name')).toBe(mockProps.values[0].id);
+          expect(inputs.at(1).prop('id')).toBe(mockProps.values[1].id);
+        });
+        it('should run setOrderOption fn on change', () => {
+          // testValue = mockProps.values[1].id; //> polish
+          // const inputWithTestValueId = renderedSubcomponent.find(`input[id="${testValue}"]`);
+          // console.log(inputWithTestValueId.debug());
+          renderedSubcomponent.find(`#${testValue}`).simulate('change', { currentTarget: { checked: true } });
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue, testValue] });
+        });
         break;
       }
       case 'date': {
