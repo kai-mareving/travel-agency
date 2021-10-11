@@ -101,24 +101,24 @@ for (let type in optionTypes) {
       case 'checkboxes': {
         it('contains inputs with correct values', () => {
           const inputs = renderedSubcomponent.find('input');
-          console.log(inputs.debug());
+
           expect(inputs.length).toEqual(mockProps.values.length);
           expect(inputs.at(0).prop('name')).toBe(mockProps.values[0].id);
           expect(inputs.at(1).prop('id')).toBe(mockProps.values[1].id);
         });
+
         it('should run setOrderOption fn on change', () => {
-          // testValue = mockProps.values[1].id; //> polish
-          // const inputWithTestValueId = renderedSubcomponent.find(`input[id="${testValue}"]`);
-          // console.log(inputWithTestValueId.debug());
           renderedSubcomponent.find(`#${testValue}`).simulate('change', { currentTarget: { checked: true } });
+
           expect(mockSetOrderOption).toBeCalledTimes(1);
-          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue, testValue] });
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue, testValue] }); //ASK MENTOR about this part
         });
         break;
       }
       case 'date': {
         it('contains DatePicker', () => {
           const datePicker = renderedSubcomponent.find(DatePicker);
+
           expect(datePicker.length).toBe(1);
         });
 
@@ -133,13 +133,13 @@ for (let type in optionTypes) {
       case 'dropdown': {
         it('contains select and options', () => {
           const select = renderedSubcomponent.find('select');
-          //- if !required component renders 1 empty option
+          /* if !required component renders 1 empty option */
           const optionBlank = select.find('option[value=""]').length;
           expect(optionBlank).toBe(1);
-          //- all other options
+          /* all other options */
           const options = select.find('option').not('[value=""]');
           expect(options.length).toBe(mockProps.values.length);
-          //- check if values are correct
+          /* check if values are correct */
           expect(options.at(0).prop('value')).toBe(mockProps.values[0].id);
           expect(options.at(1).prop('value')).toBe(mockProps.values[1].id);
         });
