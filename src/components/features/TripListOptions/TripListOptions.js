@@ -32,7 +32,6 @@ class TripListOptions extends React.Component {
 
   resetSearch() {
     this.props.changeSearchPhrase('');
-    //todo how to reset search input field value
   }
 
   render(){

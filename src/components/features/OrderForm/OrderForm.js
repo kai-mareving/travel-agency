@@ -5,6 +5,37 @@ import { Row, Col } from 'react-flexbox-grid';
 import pricing from '../../../data/pricing.json';
 import OrderOption from '../OrderOption/OrderOption';
 import OrderSummary from '../OrderSummary/OrderSummary';
+import Button from '../../common/Button/Button';
+import { formatPrice } from '../../../utils/formatPrice';
+import { calculateTotal } from '../../../utils/calculateTotal';
+import settings from '../../../data/settings.js';
+
+const sendOrder = (options, tripCost) => {
+  const totalCost = formatPrice(calculateTotal(tripCost, options));
+
+  const payload = {
+    ...options,
+    totalCost,
+  };
+
+  const url = settings.db.url + '/' + settings.db.endpoint.orders;
+
+  const fetchOptions = {
+    cache: 'no-cache',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  };
+
+  fetch(url, fetchOptions)
+    .then(function (response) {
+      return response.json();
+    }).then(function (parsedResponse) {
+      console.log('parsedResponse', parsedResponse);
+    });
+};
 
 const OrderForm = ({ tripCost, options, setOrderOption }) => {
   //// console.log('options:', { options });
@@ -18,6 +49,7 @@ const OrderForm = ({ tripCost, options, setOrderOption }) => {
       ))}
       <Col xs={12}>
         <OrderSummary tripCost={tripCost} options={options} />
+        <Button onClick={() => sendOrder(options, tripCost)}>Order Now!</Button>
       </Col>
     </Row>
   );
