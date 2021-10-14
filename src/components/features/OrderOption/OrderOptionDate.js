@@ -6,8 +6,7 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 const OrderOptionDate = ({ setOptionValue }) => {
   let [startDate, setStartDate] = useState(new Date());
-  //// console.log('currentValue:', currentValue);
-  //// console.log('startDate:', startDate);
+
   return (
     <div className={styles.component}>
       <DatePicker
@@ -17,10 +16,6 @@ const OrderOptionDate = ({ setOptionValue }) => {
         onChange={date => {
           setStartDate(date);
           setOptionValue(date);
-          /* if(date){
-            console.log(date);
-            setOptionValue(date.toISOString().substring(0, 10));
-          } */
         }}
         isClearable={true} />
     </div>

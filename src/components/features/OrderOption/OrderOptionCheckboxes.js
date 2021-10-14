@@ -15,7 +15,6 @@ const newValueSet = (currentValue, id, checked) => {
 };
 
 const OrderOptionCheckboxes = ({values, currentValue, setOptionValue}) => {
-
   return (
     <div className={styles.checkboxes}>
 
@@ -32,7 +31,7 @@ const OrderOptionCheckboxes = ({values, currentValue, setOptionValue}) => {
 
 OrderOptionCheckboxes.propTypes = {
   values: PropTypes.array,
-  currentValue: PropTypes.node, /* change later */
+  currentValue: PropTypes.node,
   setOptionValue: PropTypes.func,
   formatPrice: PropTypes.func,
 };

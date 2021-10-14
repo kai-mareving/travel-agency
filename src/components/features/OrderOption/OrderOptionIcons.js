@@ -8,7 +8,7 @@ const OrderOptionIcons = ({ values, required, currentValue, setOptionValue }) =>
   return (
     <div className={styles.component}>
 
-      {required ? '' : ( //* if false then render empty choice field
+      {required ? '' : ( /* if false then render empty choice field */
         <div
           className={currentValue === '' ? styles.iconActive : styles.icon}
           onClick={() => setOptionValue('')}

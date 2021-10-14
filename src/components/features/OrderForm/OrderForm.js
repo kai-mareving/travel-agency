@@ -12,7 +12,7 @@ import settings from '../../../data/settings.js';
 
 const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
   const totalCost = formatPrice(calculateTotal(tripCost, options));
-
+  const url = settings.db.url + '/' + settings.db.endpoint.orders; //or '/1';
   const payload = {
     tripId,
     tripName,
@@ -20,25 +20,20 @@ const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
     ...options,
     totalCost,
   };
-
-  console.log('options', options);
-  const url = settings.db.url + '/' + settings.db.endpoint.orders; //^ '/1';
+  const fetchOptions = {
+    cache: 'no-cache',
+    method: 'POST', //or 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  };
 
   if (options.name === '' || options.contact === '') {
     alert('Missing name and phone number. Please enter your contact data before submiting.');
     return;
-  } else if (options.name !== '' && options.contact !== '') {
-
-    const fetchOptions = {
-      cache: 'no-cache',
-      method: 'POST',
-      //^ method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    };
-
+  }
+  else if (options.name !== '' && options.contact !== '') {
     fetch(url, fetchOptions)
       .then(function (response) {
         return response.json();
@@ -49,7 +44,6 @@ const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
 };
 
 const OrderForm = ({ tripCost, tripId, tripName, countryCode, options, setOrderOption }) => {
-  //// console.log('options:', { options });
   return (
     <Row>
       {pricing.map(({...option}) => (

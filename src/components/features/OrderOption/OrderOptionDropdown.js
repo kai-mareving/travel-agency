@@ -4,14 +4,13 @@ import styles from './OrderOption.scss';
 import { formatPrice } from '../../../utils/formatPrice';
 
 const OrderOptionDropdown = ({ values, required, currentValue, setOptionValue }) => {
-
   return (
     <select
       className={styles.dropdown}
       value={currentValue}
       onChange={event => setOptionValue(event.currentTarget.value)}
     >
-      {required ? '' : ( //* if false then render empty choice field
+      {required ? '' : ( /* if false then render empty choice field */
         <option key='null' value=''>---</option>
       )}
       {values.map(value => (

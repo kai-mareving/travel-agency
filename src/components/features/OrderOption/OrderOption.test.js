@@ -10,7 +10,6 @@ describe('Component OrderOption', () => {
     />);
 
     expect(component).toBeTruthy();
-    //// console.log(component.debug());
   });
 
   it('should return empty object if called without required type prop', () => {
@@ -57,13 +56,13 @@ const mockProps = {
 const mockPropsForType = {
   dropdown: {},
   icons: {},
-  checkboxes: { currentValue: [mockProps.currentValue] }, //* hungarian
+  checkboxes: { currentValue: [mockProps.currentValue] },
   number: { currentValue: 1 },
   text: {},
   date: {},
 };
 
-const testValue = mockProps.values[1].id; //> polish
+const testValue = mockProps.values[1].id;
 const testValueNumber = 3;
 
 for (let type in optionTypes) {
@@ -72,15 +71,15 @@ for (let type in optionTypes) {
     let component;
     let subcomponent;
     let renderedSubcomponent;
-    let mockSetOrderOption; //! mock function
+    let mockSetOrderOption; //? mock function
 
     //- create component here for every 'it' to use
     beforeEach(() => {
-      mockSetOrderOption = jest.fn(); //!
+      mockSetOrderOption = jest.fn(); //? mock function
       component = shallow(
         <OrderOption
           type={type}
-          setOrderOption={mockSetOrderOption} //!
+          setOrderOption={mockSetOrderOption} //? mock function
           {...mockProps}
           {...mockPropsForType[type]}
         />
@@ -93,7 +92,6 @@ for (let type in optionTypes) {
     it(`renders ${optionTypes[type]}`, () => {
       expect(subcomponent).toBeTruthy();
       expect(subcomponent.length).toBe(1);
-      //// console.log(subcomponent.debug());
     });
 
     /* type-spec tests */
@@ -140,7 +138,7 @@ for (let type in optionTypes) {
       case 'dropdown': {
         it('contains select and options', () => {
           const select = renderedSubcomponent.find('select');
-          /* if !required component renders 1 empty option */
+          /* if required:false component renders 1 empty option */
           const optionBlank = select.find('option[value=""]').length;
           expect(optionBlank).toBe(1);
           /* all other options */

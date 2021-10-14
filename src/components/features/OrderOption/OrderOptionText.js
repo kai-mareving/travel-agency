@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './OrderOption.scss';
 
 const OrderOptionText = ({currentValue, setOptionValue, type, name, id}) => {
-
   return (
     <div className={styles.component}>
       <input

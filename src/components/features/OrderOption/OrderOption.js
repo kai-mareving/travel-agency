@@ -9,11 +9,10 @@ import OrderOptionText from './OrderOptionText';
 import OrderOptionDate from './OrderOptionDate';
 
 const OrderOption = ({ id, type, name, setOrderOption, ...otherProps }) => {
-  //> console.log('...otherProps:', { ...otherProps });
   const OptionComponent = optionTypes[type];
-  if (!OptionComponent) {
-    return null;
-  } else {
+
+  if (!OptionComponent) { return null; }
+  else {
     return (
       <div className={styles.component}>
         <h3 className={styles.title}>{name}</h3>
