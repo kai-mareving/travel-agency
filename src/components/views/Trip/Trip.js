@@ -15,7 +15,7 @@ import ListItem from '../../common/ListItem/ListItem';
 import styles from './Trip.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
-const Trip = ({error, name, image, cost, days, description, country, intro}) => {
+const Trip = ({error, id, name, image, cost, days, description, country, intro, countryCode}) => {
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -44,7 +44,7 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
         <Row>
           <Col xs={12}>
             <PageTitle text='Trip options' />
-            <OrderForm tripCost={cost} />
+            <OrderForm tripCost={cost} tripId={id} tripName={name} countryCode={countryCode}/>
           </Col>
         </Row>
       </Grid>
@@ -80,12 +80,14 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
 };
 
 Trip.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string,
   image: PropTypes.string,
   cost: PropTypes.string,
   days: PropTypes.number,
   description: PropTypes.string,
   country: PropTypes.object,
+  countryCode: PropTypes.string,
 };
 
 export default Trip;
