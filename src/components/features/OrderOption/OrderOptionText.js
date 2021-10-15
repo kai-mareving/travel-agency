@@ -7,7 +7,7 @@ const OrderOptionText = ({currentValue, setOptionValue, type, name, id}) => {
     <div className={styles.component}>
       <input
         type={type}
-        className={styles.input}
+        className={ currentValue === '' ? styles.required : styles.input}
         id={id}
         value={currentValue}
         placeholder={name}

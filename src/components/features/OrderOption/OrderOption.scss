@@ -17,6 +17,13 @@
   }
 }
 
+.required {
+  @extend .input;
+  border: 1px solid red;
+  background-color: lighten($color: red, $amount: 45%);
+  transition: background-color 3s;
+}
+
 .icon {
   cursor: pointer;
   width: 80%;
