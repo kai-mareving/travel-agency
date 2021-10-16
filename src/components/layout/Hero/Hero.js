@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Hero.scss';
 import PropTypes from 'prop-types';
+// import HappyHourAd from '../../features/HappyHourAd/HappyHourAd';
 
 const Hero = ({variant = '', titleText, imageSrc, ...otherProps}) => (
   <div {...otherProps} className={styles.component + variant.split(' ').map(name => ' ' + (styles[name] || name)).join('')}>
