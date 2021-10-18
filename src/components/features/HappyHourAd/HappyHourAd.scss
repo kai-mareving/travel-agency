@@ -1,9 +1,20 @@
 @import '../../../styles/settings.scss';
 
 .component {
-  margin-bottom: ($base-size * 3);
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+
+.title, .promoDescription {
+  position: absolute;
+  width: 100%;
 }
 
 .title {
-  margin-bottom: ($base-size * 2);
+  bottom: 40px;
+}
+
+.promoDescription {
+  bottom: 15px;
 }

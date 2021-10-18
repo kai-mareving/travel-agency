@@ -5,7 +5,6 @@ import styles from './HappyHourAd.scss';
 class HappyHourAd extends React.Component {
   constructor() {
     super();
-
     /* run this.forceUpdate() every second */
     setInterval(() => {
       this.forceUpdate();
@@ -17,14 +16,20 @@ class HappyHourAd extends React.Component {
     promoDescription: PropTypes.string,
   };
 
+  static defaultProps = {
+    title: 'Happy Hour Time',
+    promoDescription: 'remaining time',
+  };
+
   render() {
     const { title, promoDescription } = this.props;
+    const countdownTime = this.getCountdownTime();
 
     return(
       <div className={styles.component}>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.promoDescription}>{promoDescription}</div>
-        <div className={styles.descr}>{this.getCountdownTime()}</div>
+        <div className={styles.descr}>{(countdownTime > 23*60*60) ? this.props.promoDescription : countdownTime}</div>
       </div>
     );
   }
