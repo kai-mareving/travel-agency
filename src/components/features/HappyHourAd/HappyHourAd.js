@@ -18,8 +18,8 @@ class HappyHourAd extends React.Component {
   };
 
   static defaultProps = {
-    title: 'Happy Hour Time',
-    promoDescription: 'remaining time',
+    title: 'Happy Hour',
+    promoDescription: 'time until:',
   };
 
   render() {

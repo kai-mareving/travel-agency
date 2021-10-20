@@ -22,5 +22,6 @@ describe('Function formatTime', () => {
     expect(formatTime(3793)).toBe('01:03:13');
     expect(formatTime(120)).toBe('00:02:00');
     expect(formatTime(3604)).toBe('01:00:04');
+    expect(formatTime(46800)).toBe('13:00:00');
   });
 });

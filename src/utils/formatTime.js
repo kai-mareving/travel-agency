@@ -12,5 +12,16 @@ export const formatTime = (time) => {
     seconds = String(seconds).padStart(2, '0');
 
     return hours + ':' + minutes + ':' + seconds;
+
+    /*
+    let sec_num = parseInt(time, 10)
+    let hours   = Math.floor(sec_num / 3600)
+    let minutes = Math.floor(sec_num / 60) % 60
+    let seconds = sec_num % 60
+
+    return [hours,minutes,seconds]
+        .map(value => value < 10 ? '0' + value : value)
+        .join(':')
+    */
   }
 };
