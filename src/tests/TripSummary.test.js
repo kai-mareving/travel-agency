@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TripSummary from './TripSummary';
+import TripSummary from '../components/features/TripSummary/TripSummary';
 
 describe('Component TripSummary', () => {
   it('should render without crashing', () => {

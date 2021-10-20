@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HappyHourAd from './HappyHourAd';
+import HappyHourAd from '../../components/features/HappyHourAd/HappyHourAd';
+
+//# ### INTEGRITY TESTS ### # \\
 
 const select = {
   title: '.title',
@@ -13,32 +15,7 @@ const mockProps = {
   promoDescription: 'Promotion',
 };
 
-describe('Component HappyHourAd', () => {
-  /* Render Tests */
-  it('should render without crashing', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component).toBeTruthy();
-  });
-
-  it('should render heading and description', () => {
-    const component = shallow(<HappyHourAd />);
-
-    expect(component.exists(select.title)).toEqual(true);
-    expect(component.exists(select.promoDescription)).toEqual(true);
-    expect(component.exists(select.descr)).toEqual(true);
-  });
-
-  it('should render header with text content from props', () => {
-    const component = shallow(<HappyHourAd {...mockProps} />);
-
-    expect(component.find(select.title).text()).toEqual(mockProps.title);
-  });
-});
-
-
-/* *** Time Tests *** */
 const trueDate = Date;
-
 const mockDate = (customDate) => class extends Date {
   constructor(...args) {
     if(args.length) {
@@ -96,17 +73,4 @@ describe('Component HappyHourAd with mocked Date and delaySeconds', () => {
   checkDescriptionAfterTime('11:57:58', 2, '120');
   checkDescriptionAfterTime('11:59:58', 1, '1');
   checkDescriptionAfterTime('13:00:00', 60*60, 22 * 60 * 60 + '');
-});
-
-describe('Component HappyHourAd with rendered promo description', () => {
-  checkDescriptionAtTime('12:00:00', mockProps.promoDescription);
-  checkDescriptionAtTime('12:30:50', mockProps.promoDescription);
-  checkDescriptionAtTime('12:59:59', mockProps.promoDescription);
-});
-
-describe('Component HappyHourAd with mocked Date and delaySeconds', () => {
-  checkDescriptionAfterTime('11:57:58', 2, '120');
-  checkDescriptionAfterTime('11:59:59', 1, mockProps.promoDescription);
-  checkDescriptionAfterTime('12:50:58', 1, mockProps.promoDescription);
-  checkDescriptionAfterTime('14:00:00', 60*60, 21*60*60 + '');
 });

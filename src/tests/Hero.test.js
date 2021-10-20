@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Hero from './Hero';
+import Hero from '../components/layout/Hero/Hero';
 
 describe('Component Hero', () => {
   it('should render without crashing', () => {

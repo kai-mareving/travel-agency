@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import OrderOption from './OrderOption';
+import OrderOption from '../components/features/OrderOption/OrderOption';
 import DatePicker from 'react-datepicker';
 
 describe('Component OrderOption', () => {
