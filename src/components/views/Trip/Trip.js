@@ -14,8 +14,18 @@ import ListItem from '../../common/ListItem/ListItem';
 
 import styles from './Trip.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
+import { discountPrice } from '../../../utils/discountPrice';
 
-const Trip = ({error, id, name, image, cost, days, description, country, intro, countryCode}) => {
+const Trip = ({ error, id, name, image, cost, days, description, country, intro, countryCode }) => {
+  const today = new Date();
+  let price = cost;
+  let isDiscount = false;
+
+  if ( (today.getUTCHours() >= 12) || (today.getUTCHours <= 13 && today.getUTCMinutes() <= 0) ) {
+    price = discountPrice(cost, 20);
+    isDiscount = true;
+  }
+
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -34,7 +44,8 @@ const Trip = ({error, id, name, image, cost, days, description, country, intro, 
               </div>
               <List variant='light'>
                 <ListItem title={`<strong>Duration:</strong> ${days} days`} icon='calendar-alt' />
-                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />
+                { isDiscount && <div className={styles.promoPrice}>Promo Price is enabled</div> }
+                <ListItem title={`<strong>Price:</strong> from ${price}`} icon='money-bill-wave' />
               </List>
             </Col>
           </Row>
